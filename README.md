@@ -17,9 +17,9 @@ _Note: Although Jade supports interpolation, you should be doing that mostly on 
 server and browser templating will convolute your app. Instead, use Jade as a syntactic sugar for
 HTML, and let AngularJS take care of interpolation on the browser side._
 
-## How to use angular-express-seed
+## How to use angular-express-bootstrap-sb-admin-seed
 
-Clone the angular-express-seed repository, run `npm install` to grab the dependencies, and start hacking!
+Clone the angular-express-bootstrap-sb-admin-seed repository, run `npm install` to grab the dependencies, and start hacking!
 
 ### Running the app
 
