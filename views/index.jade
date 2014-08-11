@@ -1,19 +1,19 @@
 extends layout
 
 block body
-  div(ng-controller='AppCtrl')
-    h2 Hello {{name}}
-    ul.menu
-      li
-        a(href='view1') view1
-      li
-        a(href='view2') view2
+  div#wrapper
+    div(ng-controller='AppCtrl')
+      include navigation
+      #page-wrapper
+        .row
+          .col-lg-12
+            h1.page-header {{name}}
 
-    div(ng-view)
+        div(ng-view)
 
-    div
-      | Angular seed app: v
-      span(app-version)
+        div
+          | Angular Express Bootstrap SB Admin Seed app: v
+          span(app-version)
 
   script(src='js/lib/angular/angular.js')
   script(src='js/app.js')
@@ -21,3 +21,15 @@ block body
   script(src='js/controllers.js')
   script(src='js/filters.js')
   script(src='js/directives.js')
+  
+  // jQuery
+  script(src='js/lib/jquery/jquery-2.1.1.min.js')
+  
+  // Bootstrap
+  script(src='sb-admin-2/js/bootstrap.min.js')
+  
+  // Metis Menu Plugin Js
+  script(src='sb-admin-2/js/plugins/metisMenu/metisMenu.min.js')
+  
+  //Custom Theme Js
+  script(src='sb-admin-2/js/sb-admin-2.js')

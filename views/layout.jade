@@ -2,8 +2,38 @@
 html(ng-app="myApp")
   head
     meta(charset='utf8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     base(href='/')
-    title Angular Express Seed App
+    title Angular Express Bootstrap SB Admin Seed App
+    
+    // Bootstrap Core CSS
+    link(rel='stylesheet', href='/sb-admin-2/css/bootstrap.min.css')
+    
+    // MetisMenu CSS
+    link(rel='stylesheet', href='/sb-admin-2/css/plugins/metisMenu/metisMenu.min.css')
+    
+    // Timeline CSS 
+    link(href='/sb-admin-2/css/plugins/timeline.css', rel='stylesheet')
+    
+    // Social Buttons CSS 
+    link(href='/sb-admin-2/css/plugins/social-buttons.css', rel='stylesheet')
+    
+    // SB Admin Theme CSS
+    link(rel='stylesheet', href='/sb-admin-2/css/sb-admin-2.css')
+    
+    // Morris Charts CSS 
+    link(href='/sb-admin-2/css/plugins/morris.css', rel='stylesheet')
+    
+    // Custom Fonts
+    link(rel='stylesheet', type='text/css', href='/sb-admin-2/font-awesome-4.1.0/css/font-awesome.min.css')
+    
+    // Custom CSS
     link(rel='stylesheet', href='/css/app.css')
+    
+    <!--[if lt IE 9]>
+    script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    <![endif]-->
   body
     block body

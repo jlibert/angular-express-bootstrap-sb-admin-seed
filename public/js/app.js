@@ -10,16 +10,52 @@ angular.module('myApp', [
 ]).
 config(function ($routeProvider, $locationProvider) {
   $routeProvider.
-    when('/view1', {
-      templateUrl: 'partials/partial1',
-      controller: 'MyCtrl1'
+    when('/dashboard', {
+      templateUrl: 'partials/dashboard',
+      controller: 'dashboardCtrl'
     }).
-    when('/view2', {
-      templateUrl: 'partials/partial2',
-      controller: 'MyCtrl2'
+    when('/blank',{
+      templateUrl: 'partials/blank',
+      controller: 'blankCtrl'
+    }).
+    when('/tables',{
+      templateUrl: 'partials/tables',
+      controller: 'tablesCtrl'
+    }).
+    when('/morris',{
+      templateUrl: 'partials/morris',
+      controller: 'morrisCtrl'
+    }).
+    when('/flot',{
+      templateUrl: 'partials/flot',
+      controller: 'flotCtrl'
+    }).
+    when('/forms',{
+      templateUrl: 'partials/forms',
+      controller: 'formsCtrl'
+    }).
+    when('/panels-wells',{
+      templateUrl: 'partials/panels-wells',
+      controller: 'panels-wellsCtrl'
+    }).
+    when('/buttons',{
+      templateUrl: 'partials/buttons',
+      controller: 'buttonsCtrl'
+    }).
+    when('/grid',{
+      templateUrl: 'partials/grid',
+      controller: 'gridCtrl'
+    }).
+    when('/typography',{
+      templateUrl: 'partials/typography',
+      controller: 'typographyCtrl'
+    }).
+    when('/notifications',{
+      templateUrl: 'partials/notifications',
+      controller: 'notificationsCtrl'
     }).
     otherwise({
-      redirectTo: '/view1'
+      redirectTo: '/dashboard'
     });
 
   $locationProvider.html5Mode(true);
