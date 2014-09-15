@@ -54,6 +54,21 @@ app.use('/partials', partials);
 // JSON API
 app.use('/api', api);
 
+
+// JSON Datasource - ideally we'd get this data from some database
+app.get('/datasource', function(req, res, next){
+  var fs = require('fs');
+  var file = __dirname + '/external_data/data.json';
+  
+  fs.readFile(file, 'utf8', function (err, data) {
+    if (err) {
+      console.log('Error: ' + err);
+      return;
+    }
+  res.send(data);
+  });
+});
+
 // redirect all others to the index (HTML5 history)
 app.get('*', function(req, res, next){
   res.render('index');

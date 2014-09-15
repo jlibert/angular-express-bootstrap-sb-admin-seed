@@ -55,7 +55,14 @@ angular.module('myApp.controllers', []).
                                       '<script src="sb-admin-2/js/plugins/morris/morris-data.js"></script>');
      });
   }).
-  controller('tablesCtrl', function($scope){
+
+
+
+  controller('tablesCtrl', function($scope, TableService){
+    TableService.getLayoutEngineList().then(function(data) {
+      $scope.engineList = data;  
+    });
+    
     $scope.$on('$viewContentLoaded', function () 
      {
       $scope.$parent.name = 'Tables';
@@ -65,7 +72,11 @@ angular.module('myApp.controllers', []).
                                       '<script src="sb-admin-2/js/plugins/dataTables/dataTables.bootstrap.js"></script>'+
                                   '<script>$(document).ready(function() {$("#dataTables-example").dataTable();});</script>');
      });
-  }).controller('formsCtrl', function($scope){
+  }).
+
+
+
+controller('formsCtrl', function($scope){
     $scope.$on('$viewContentLoaded', function()
      {
       $scope.$parent.name = 'Forms';
