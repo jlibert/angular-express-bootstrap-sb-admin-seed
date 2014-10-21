@@ -55,4 +55,10 @@
 {"Engine"  :  "Misc", "Browser"  :  "Lynx", "Platform"  :  "Text only", "Version"  :  "-", "CSS"  :  "X"},
 {"Engine"  :  "Misc", "Browser"  :  "IE Mobile", "Platform"  :  "Windows Mobile 6", "Version"  :  "-", "CSS"  :  "C"},
 {"Engine"  :  "Misc", "Browser"  :  "PSP browser", "Platform"  :  "PSP", "Version"  :  "-", "CSS"  :  "C"},
-{"Engine"  :  "Other browser", "Browser"  :  "All others", "Platform"  :  "-", "Version"  :  "-", "CSS"  :  "U"}]}
+{"Engine"  :  "Other browser", "Browser"  :  "All others", "Platform"  :  "-", "Version"  :  "-", "CSS"  :  "U"}],
+ 
+"nativeTableData":
+ [{"Username"  :  "@mdo", "FirstName"  :  "Mark", "LastName"  :  "Otto", "ContextClass"  :  "success"}, 
+{"Username"  :  "@fat", "FirstName"  :  "Jacob", "LastName"  :  "Thornton", "ContextClass"  :  "info"},
+{"Username"  :  "@twitter", "FirstName"  :  "Larry", "LastName"  :  "the Bird", "ContextClass"  :  "warning"},
+{"Username"  :  "@jsmith", "FirstName"  :  "John", "LastName"  :  "Smith", "ContextClass"  :  "danger"}]}

@@ -2,227 +2,163 @@
   .col-lg-12
     .gridStyle(ng-grid="gridOptions")
 .row
-    .col-lg-12
-        .panel.panel-default
-          .panel-heading
-            | DataTables Advanced Tables
-          .panel-body
-            .table-responsive
-              table.table.table-striped.table-bordered.table-hover
-                .row
-                  .col-lg-9.dataTables-example_length
-                    .col-lg-1
-                      select.form-control.input-sm
-                        option(value="10") 10
-                        option(value="25") 25
-                        option(value="50") 50
-                        option(value="100") 100
-                    .col-lg-3
-                      | records per page
-                  .col-lg-3.dataTables_filter
-                    label.col-lg-3 Search:
-                    .col-lg-9
-                      input.form-control.input-sm(type='search', ng-model='search', Placeholder='Search')
-                thead
-                  tr
-                    th Rendering engine
-                    th Browser
-                    th Platform(s)
-                    th Engine version
-                    th CSS grade
-                tbody
-                  tr(ng-repeat='engine in engineList | filter:search')
-                    td {{engine.Engine}}
-                    td {{engine.Browser}}
-                    td {{engine.Platform}}
-                    td.center {{engine.Version}}
-                    td.center {{engine.CSS}}
-            .well
-              h4 DataTables Usage Information
-              p
-                | DataTables is a very flexible, advanced tables plugin for jQuery. In SB Admin, we are using a specialized version of DataTables built for Bootstrap 3. We have also customized the table headings to use Font Awesome icons in place of images. For complete documentation on DataTables, visit their website at
-                a(target='_blank', href='https://datatables.net/') https://datatables.net/
-                | .
-              a.btn.btn-default.btn-lg.btn-block(target='_blank', href='https://datatables.net/') View DataTables Documentation 
-    .row
-      .col-lg-6
-        .panel.panel-default
-          .panel-heading
-            | Kitchen Sink
-          .panel-body
-            .table-responsive
-              table.table.table-striped.table-bordered.table-hover
-                thead
-                  tr
-                    th #
-                    th First Name
-                    th Last Name
-                    th Username
-                tbody
-                  tr
-                    td 1
-                    td Mark
-                    td Otto
-                    td @mdo
-                  tr
-                    td 2
-                    td Jacob
-                    td Thornton
-                    td @fat
-                  tr
-                    td 3
-                    td Larry
-                    td the Bird
-                    td @twitter
-      .col-lg-6
-        .panel.panel-default
-          .panel-heading
-            | Basic Table
-          .panel-body
-            .table-responsive
-              table.table
-                thead
-                  tr
-                    th #
-                    th First Name
-                    th Last Name
-                    th Username
-                tbody
-                  tr
-                    td 1
-                    td Mark
-                    td Otto
-                    td @mdo
-                  tr
-                    td 2
-                    td Jacob
-                    td Thornton
-                    td @fat
-                  tr
-                    td 3
-                    td Larry
-                    td the Bird
-                    td @twitter
-    .row
-      .col-lg-6
-        .panel.panel-default
-          .panel-heading
-            | Striped Rows
-          .panel-body
-            .table-responsive
-              table.table.table-striped
-                thead
-                  tr
-                    th #
-                    th First Name
-                    th Last Name
-                    th Username
-                tbody
-                  tr
-                    td 1
-                    td Mark
-                    td Otto
-                    td @mdo
-                  tr
-                    td 2
-                    td Jacob
-                    td Thornton
-                    td @fat
-                  tr
-                    td 3
-                    td Larry
-                    td the Bird
-                    td @twitter
-      .col-lg-6
-        .panel.panel-default
-          .panel-heading
-            | Bordered Table
-          .panel-body
-            .table-responsive.table-bordered
-              table.table
-                thead
-                  tr
-                    th #
-                    th First Name
-                    th Last Name
-                    th Username
-                tbody
-                  tr
-                    td 1
-                    td Mark
-                    td Otto
-                    td @mdo
-                  tr
-                    td 2
-                    td Jacob
-                    td Thornton
-                    td @fat
-                  tr
-                    td 3
-                    td Larry
-                    td the Bird
-                    td @twitter
-    .row
-      .col-lg-6
-        .panel.panel-default
-          .panel-heading
-            | Hover Rows
-          .panel-body
-            .table-responsive
-              table.table.table-hover
-                thead
-                  tr
-                    th #
-                    th First Name
-                    th Last Name
-                    th Username
-                tbody
-                  tr
-                    td 1
-                    td Mark
-                    td Otto
-                    td @mdo
-                  tr
-                    td 2
-                    td Jacob
-                    td Thornton
-                    td @fat
-                  tr
-                    td 3
-                    td Larry
-                    td the Bird
-                    td @twitter
-      .col-lg-6
-        .panel.panel-default
-          .panel-heading
-            | Context Classes
-          .panel-body
-            .table-responsive
-              table.table
-                thead
-                  tr
-                    th #
-                    th First Name
-                    th Last Name
-                    th Username
-                tbody
-                  tr.success
-                    td 1
-                    td Mark
-                    td Otto
-                    td @mdo
-                  tr.info
-                    td 2
-                    td Jacob
-                    td Thornton
-                    td @fat
-                  tr.warning
-                    td 3
-                    td Larry
-                    td the Bird
-                    td @twitter
-                  tr.danger
-                    td 4
-                    td John
-                    td Smith
-                    td @jsmith
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        | ngTable
+      .panel-body      
+        .row
+          .col-lg-12
+            table.table.table-striped.table-hover(ng-table='tableParams', show-filter='true', template-pagination='custom/pager')
+              tr(ng-repeat='engine in $data')
+                td(data-title="'Rendering Engine'", sortable="'Engine'", filter="{'Engine':'text'}")
+                  | {{engine.Engine}}
+                td(data-title="'Browser'", sortable="'Browser'", filter="{'Browser':'text'}")
+                  | {{engine.Browser}}
+                td(data-title="'Platform(s)'", sortable="'Platform'", filter="{'Platform':'text'}")
+                  | {{engine.Platform}}
+                td(data-title="'Engine version'", sortable="'Version'", filter="{'Version':'text'}")
+                  | {{engine.Version}}
+                td(data-title="'CSS grade'", sortable="'CSS'")
+                  | {{engine.CSS}}
+        .well
+          h4 ngTable Usage Information
+          p
+            | ngTable is a simple, very flexible AngularJS directive with sorting and filtering. For this AngularJS implementation of SB Admin, we will be implementing the ngTable directive to replace DataTables 
+            a(target='_blank', href='https://datatables.net/.') https://datatables.net/
+            | . 
+            br
+            | For complete documentation on ngTable, visit their website at 
+            a(target='_blank', href='http://bazalt-cms.com/ng-table/') http://bazalt-cms.com/ng-table/
+            |.
+            a.btn.btn-default.btn-lg.btn-block(target='_blank', href='http://bazalt-cms.com/ng-table/') View ngTable Documentation 
+
+  script(id='custom/pager', type='text/ng-template')
+    ul.pager.ng-cloak
+      li(ng-repeat='page in pages', ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}", ng-show="page.type == 'prev' || page.type == 'next'", ng-switch='page.type')
+        a(ng-switch-when='prev', ng-click='params.page(page.number)', href='/tables') &laquo; Previous
+        a(ng-switch-when='next', ng-click='params.page(page.number)', href='/tables') Next &raquo;
+        li
+          .btn-group
+            button.btn.btn-default(type='button', ng-class="{'active':params.count() == 10}", ng-click='params.count(10)') 10
+            button.btn.btn-default(type='button', ng-class="{'active':params.count() == 25}", ng-click='params.count(25)') 25
+            button.btn.btn-default(type='button', ng-class="{'active':params.count() == 50}", ng-click='params.count(50)') 50
+            button.btn.btn-default(type='button', ng-class="{'active':params.count() == 100}", ng-click='params.count(100)') 100
+.row
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        | Kitchen Sink
+      .panel-body
+        .table-responsive
+          table.table.table-striped.table-bordered.table-hover
+            thead
+              tr
+                th #
+                th First Name
+                th Last Name
+                th Username
+            tbody
+              tr(ng-repeat='person in nativeTableData | limitTo: 3')
+                td {{$index + 1}}
+                td {{person.FirstName}}
+                td {{person.LastName}}
+                td {{person.Username}}
+
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        | Basic Table
+      .panel-body
+        .table-responsive
+          table.table
+            thead
+              tr
+                th #
+                th First Name
+                th Last Name
+                th Username
+            tbody
+              tr(ng-repeat='person in nativeTableData | limitTo: 3')
+                td {{$index + 1}}
+                td {{person.FirstName}}
+                td {{person.LastName}}
+                td {{person.Username}}
+.row
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        | Striped Rows
+      .panel-body
+        .table-responsive
+          table.table.table-striped
+            thead
+              tr
+                th #
+                th First Name
+                th Last Name
+                th Username
+            tbody
+              tr(ng-repeat='person in nativeTableData | limitTo: 3')
+                td {{$index + 1}}
+                td {{person.FirstName}}
+                td {{person.LastName}}
+                td {{person.Username}}
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        | Bordered Table
+      .panel-body
+        .table-responsive.table-bordered
+          table.table
+            thead
+              tr
+                th #
+                th First Name
+                th Last Name
+                th Username
+            tbody
+              tr(ng-repeat='person in nativeTableData | limitTo: 3')
+                td {{$index + 1}}
+                td {{person.FirstName}}
+                td {{person.LastName}}
+                td {{person.Username}}
+.row
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        | Hover Rows
+      .panel-body
+        .table-responsive
+          table.table.table-hover
+            thead
+              tr
+                th #
+                th First Name
+                th Last Name
+                th Username
+            tbody
+              tr(ng-repeat='person in nativeTableData | limitTo: 3')
+                td {{$index + 1}}
+                td {{person.FirstName}}
+                td {{person.LastName}}
+                td {{person.Username}}
+  .col-lg-6
+    .panel.panel-default
+      .panel-heading
+        | Context Classes
+      .panel-body
+        .table-responsive
+          table.table
+            thead
+              tr
+                th #
+                th First Name
+                th Last Name
+                th Username
+            tbody
+              tr(ng-repeat='person in nativeTableData', class='{{person.ContextClass}}')
+                td {{$index + 1}}
+                td {{person.FirstName}}
+                td {{person.LastName}}
+                td {{person.Username}}

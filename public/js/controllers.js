@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
+angular.module('myApp.controllers', ['ngTable']).
   controller('AppCtrl', function ($scope, $http) {
 
     $http({
@@ -58,19 +58,35 @@ angular.module('myApp.controllers', []).
 
 
 
-  controller('tablesCtrl', function($scope, TableService){
-    TableService.getLayoutEngineList().then(function(data) {
-      $scope.engineList = data;  
+  controller('tablesCtrl', function($scope, $filter, TableService, ngTableParams){
+    
+    TableService.getTableData().then(function(data) {
+      $scope.tableParams = new ngTableParams({
+        page: 1,            // show first page
+        count: 10,           // count per page
+        sorting: {
+          name: 'asc' // initial sorting
+        },
+        filter: {
+          name: ''
+        }
+      }, {
+        total: 1,
+        getData: function($defer, params) {
+          var filteredData = params.filter() ? $filter('filter')(data.layoutEngines, params.filter()) : data.layoutEngines;
+          var orderedData = params.sorting() ? $filter('orderBy')(filteredData, params.orderBy()) : data;
+
+          params.total(orderedData.length); // set total for recalc pagination
+          $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));    
+        }          
+      });
+    
+    $scope.nativeTableData = data.nativeTableData;    
     });
     
     $scope.$on('$viewContentLoaded', function () 
      {
       $scope.$parent.name = 'Tables';
-      // javascript code here
-      $('div#page-wrapper div:last').nextAll('script').remove();
-      $('div#page-wrapper').append('<script src="sb-admin-2/js/plugins/dataTables/jquery.dataTables.js"></script>'+
-                                      '<script src="sb-admin-2/js/plugins/dataTables/dataTables.bootstrap.js"></script>'+
-                                  '<script>$(document).ready(function() {$("#dataTables-example").dataTable();});</script>');
      });
   }).
 

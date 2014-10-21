@@ -6,11 +6,11 @@ angular.module('myApp.services', []).
   value('version', '0.1').
     factory('TableService', function ($http, $q) {
 	    return {
-        getLayoutEngineList: function() {
+        getTableData: function() {
           return $http.get('/datasource').success(function(data){
           }).then(function(response) {
             if (typeof response.data === 'object') {
-	            return response.data.layoutEngines;
+	            return response.data;
 	          } else {
 	            // invalid response
 	            return $q.reject(response.data);
