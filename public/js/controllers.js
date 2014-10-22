@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', ['ngTable']).
+angular.module('myApp.controllers', ['ngRoute', 'ngTable']).
   controller('AppCtrl', function ($scope, $http) {
 
     $http({
