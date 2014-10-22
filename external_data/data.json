@@ -58,7 +58,51 @@
 {"Engine"  :  "Other browser", "Browser"  :  "All others", "Platform"  :  "-", "Version"  :  "-", "CSS"  :  "U"}],
  
 "nativeTableData":
- [{"Username"  :  "@mdo", "FirstName"  :  "Mark", "LastName"  :  "Otto", "ContextClass"  :  "success"}, 
+[{"Username"  :  "@mdo", "FirstName"  :  "Mark", "LastName"  :  "Otto", "ContextClass"  :  "success"}, 
 {"Username"  :  "@fat", "FirstName"  :  "Jacob", "LastName"  :  "Thornton", "ContextClass"  :  "info"},
 {"Username"  :  "@twitter", "FirstName"  :  "Larry", "LastName"  :  "the Bird", "ContextClass"  :  "warning"},
-{"Username"  :  "@jsmith", "FirstName"  :  "John", "LastName"  :  "Smith", "ContextClass"  :  "danger"}]}
+{"Username"  :  "@jsmith", "FirstName"  :  "John", "LastName"  :  "Smith", "ContextClass"  :  "danger"}],
+
+"dashboardTable":
+[{"ID"  :  "3326", "Date"  :  "10/21/2013", "Time"  :  "3:29 PM", "Amount"  :  "$321.33"},
+{"ID"  :  "3325", "Date"  :  "10/21/2013", "Time"  :  "3:20 PM", "Amount"  :  "$234.34"},
+{"ID"  :  "3324", "Date"  :  "10/21/2013", "Time"  :  "3:03 PM", "Amount"  :  "$724.17"},
+{"ID"  :  "3323", "Date"  :  "10/21/2013", "Time"  :  "3:00 PM", "Amount"  :  "$23.71"},
+{"ID"  :  "3322", "Date"  :  "10/21/2013", "Time"  :  "2:49 PM", "Amount"  :  "$8345.23"},
+{"ID"  :  "3321", "Date"  :  "10/21/2013", "Time"  :  "2:23 PM", "Amount"  :  "$245.12"},
+{"ID"  :  "3320", "Date"  :  "10/21/2013", "Time"  :  "2:15 PM", "Amount"  :  "$5663.54"},
+{"ID"  :  "3319", "Date"  :  "10/21/2013", "Time"  :  "2:13 PM", "Amount"  :  "$943.45"}],
+
+"notifications":
+[{"Icon"  :  "comment", "Subject"  :  "New Comment", "DateTime"  :  "4 minutes ago"},
+{"Icon"  :  "twitter", "Subject"  :  "3 New Followers", "DateTime"  :  "12 minutes ago"},
+{"Icon"  :  "envelope", "Subject"  :  "Message Sent", "DateTime"  :  "27 minutes ago"},
+{"Icon"  :  "tasks", "Subject"  :  "New Task", "DateTime"  :  "43 minutes ago"},
+{"Icon"  :  "upload", "Subject"  :  "Server Rebooted", "DateTime"  :  "11:32 AM"},
+{"Icon"  :  "bolt", "Subject"  :  "Server Crashed!", "DateTime"  :  "11:13 AM"},
+{"Icon"  :  "warning", "Subject"  :  "Server Not Responding", "DateTime"  :  "10:57 PM"},
+{"Icon"  :  "shopping-cart", "Subject"  :  "New Order Placed", "DateTime"  :  "9:49 PM"},
+{"Icon"  :  "money", "Subject"  :  "Payment Received", "DateTime"  :  "Yesterday"}],
+
+"chat":
+ [{"Name"  :  "Jack Sparrow", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.",
+   "Time"  :  "12 mins ago"}, {"Name"  :  "Jeiel Libert", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.", 
+   "Time" : "13 mins ago"}, {"Name"  :  "Jack Sparrow", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.",
+   "Time"  :  "14 mins ago"},
+{"Name"  :  "Jeiel Libert", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.", "Time"  :  "15 mins ago"}],
+
+"timeline":
+[{"Icon"  :  "check", "Type"  :  "", "Heading"  :  "Lorem ipsum dolor", "Timestamp"  :  "11 hours ago via Twitter", 
+"Body"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia pariatur? Est cum veniam excepturi. Maiores praesentium, porro voluptas suscipit facere rem dicta, debitis.", "Menu"  :  null},
+{"Icon"  :  "credit-card", "Type"  :  "warning", "Heading"  :  "Lorem ipsum dolor", "Timestamp"  :  null, 
+"Body"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolorem quibusdam, tenetur commodi provident cumque magni voluptatem libero, quis rerum. Fugiat esse debitis optio, tempore. Animi officiis alias, officia repellendus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium maiores odit qui est tempora eos, nostrum provident explicabo dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.", "Menu"  :  null},
+{"Icon"  :  "bomb", "Type"  :  "danger", "Heading"  :  "Lorem ipsum dolor", "Timestamp"  :  null, 
+"Body"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam facilis enim eaque, tenetur nam id qui vel velit similique nihil iure molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.", "Menu"  :  null},
+{"Icon"  :  "", "Type"  :  "", "Heading"  :  "Lorem ipsum dolor", "Timestamp"  :  null,
+"Body"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!", "Menu"  :  null},
+{"Icon"  :  "save", "Type"  :  "info", "Heading"  :  "Lorem ipsum dolor", "Timestamp"  :  null, "Body"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!", 
+"Menu"  :  [{"Item"  :  "Action", "URL"  :  "dashboard#"}, {"Item"  :  "Another Action", "URL"  :  "dashboard#"}, {"Item"  :  "Something else here", "URL"  :  "dashboard#"}]},
+{"Icon"  :  "", "Type"  :  "", "Heading"  :  "Lorem ipsum dolor", "Timestamp"  :  null, "Body"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!", 
+"Menu"  :  null},
+{"Icon"  :  "graduation-cap", "Type"  :  "success", "Heading"  :  "Lorem ipsum dolor", "Timestamp"  :  null, "Body"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.", 
+"Menu"  :  null}]}

@@ -17,7 +17,15 @@ angular.module('myApp.controllers', ['ngRoute', 'ngTable']).
     });
     
   }).
-  controller('dashboardCtrl', function ($scope) {
+  controller('dashboardCtrl', function ($scope, $location, TableService) {
+    
+    TableService.getTableData().then(function(data) {
+      $scope.dashboardTable = data.dashboardTable;
+      $scope.notifications = data.notifications;
+      $scope.chat = data.chat;
+      $scope.timeline = data.timeline;
+    });
+    
     // write Ctrl
     $scope.$on('$viewContentLoaded', function () 
      {
@@ -77,10 +85,9 @@ angular.module('myApp.controllers', ['ngRoute', 'ngTable']).
           var orderedData = params.sorting() ? $filter('orderBy')(filteredData, params.orderBy()) : data;
 
           params.total(orderedData.length); // set total for recalc pagination
-          $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));    
-        }          
+          $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
       });
-    
     $scope.nativeTableData = data.nativeTableData;    
     });
     
