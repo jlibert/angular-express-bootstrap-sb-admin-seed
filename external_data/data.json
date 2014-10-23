@@ -85,11 +85,13 @@
 {"Icon"  :  "money", "Subject"  :  "Payment Received", "DateTime"  :  "Yesterday"}],
 
 "chat":
- [{"Name"  :  "Jack Sparrow", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.",
-   "Time"  :  "12 mins ago"}, {"Name"  :  "Jeiel Libert", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.", 
-   "Time" : "13 mins ago"}, {"Name"  :  "Jack Sparrow", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.",
+ [{"Direction"  :  "Outgoing", "Icon"  :  "http://placehold.it/50/55C1E7/fff", "Name"  :  "Jack Sparrow", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.",
+   "Time"  :  "12 mins ago"}, 
+  {"Direction"  :  "Incoming", "Icon"  :  "http://placehold.it/50/FA6F57/fff", "Name"  :  "Jeiel Libert", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.", 
+   "Time" : "13 mins ago"}, 
+  {"Direction"  :  "Outgoing", "Icon"  :  "http://placehold.it/50/55C1E7/fff", "Name"  :  "Jack Sparrow", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.",
    "Time"  :  "14 mins ago"},
-{"Name"  :  "Jeiel Libert", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.", "Time"  :  "15 mins ago"}],
+  {"Direction"  :  "Incoming", "Icon"  :  "http://placehold.it/50/FA6F57/fff", "Name"  :  "Jeiel Libert", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.", "Time"  :  "15 mins ago"}],
 
 "timeline":
 [{"Icon"  :  "check", "Type"  :  "", "Heading"  :  "Lorem ipsum dolor", "Timestamp"  :  "11 hours ago via Twitter", 

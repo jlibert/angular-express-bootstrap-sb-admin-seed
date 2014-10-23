@@ -25,6 +25,10 @@ angular.module('myApp.controllers', []).
       $scope.timeline = data.timeline;
     });
     
+    $scope.chatDirectionClass = function(direction){
+      return (direction == 'Outgoing')?'left':'right';
+    }
+    
     // write Ctrl
     $scope.$on('$viewContentLoaded', function () 
      {

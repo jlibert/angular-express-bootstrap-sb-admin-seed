@@ -62,6 +62,7 @@
     .row
       .col-lg-8
       
+      
         // Area Chart
         .panel.panel-default
           .panel-heading
@@ -84,6 +85,7 @@
                     a(href='dashboard#') Separated link
           .panel-body
             #morris-area-chart 
+            
             
         // Bar Chart 
         .panel.panel-default
@@ -133,21 +135,23 @@
             | Responsive Timeline
           .panel-body
             ul.timeline
-              li(ng-repeat='lineItem in timeline', ng-class-even="'timeline-inverted'")
-                .timeline-badge(class='{{lineItem.Type}}', ng-if='lineItem.Type!=""')
+              li(ng-repeat='lineItem in timeline', ng-class-even="'timeline-inverted'", ng-switch='lineItem.Icon.length > 0')
+                
+                .timeline-badge(class='{{lineItem.Type}}', ng-switch-when='true')
                   i.fa(class='fa-{{lineItem.Icon}}')
+                
                 .timeline-panel
                   .timeline-heading
                     h4.timeline-title {{lineItem.Heading}}
-                    p(ng-if='lineItem.Timestamp!=null')
+                    p(ng-show='lineItem.Timestamp!=null')
                       small.text-muted
                         i.fa.fa-clock-o
                         |  {{lineItem.Timestamp}}
                   .timeline-body
                     p
                       | {{lineItem.Body}}
-                    hr(ng-if='lineItem.Menu!=null')
-                    .btn-group(ng-if='lineItem.Menu!=null')
+                    hr(ng-show='lineItem.Menu!=null')
+                    .btn-group(ng-show='lineItem.Menu!=null')
                       button.btn.btn-primary.btn-sm.dropdown-toggle(type='button', data-toggle='dropdown')
                         i.fa.fa-gear
                         span.caret
@@ -156,6 +160,7 @@
                           a(href='{{menuItem.URL}}') {{menuItem.Item}}
 
       .col-lg-4
+      
       
         // Notifications
         .panel.panel-default
@@ -214,16 +219,20 @@
                     | Sign Out
           .panel-body
             ul.chat
-              li.left.clearfix(ng-repeat='chat in chat', ng-switch="$even")
-                span.chat-img(ng-class-odd="'pull-left'", ng-class-even="'pull-right'")
-                  img.img-circle(ng-switch-when="true", src='http://placehold.it/50/55C1E7/fff', alt='User Avatar')
-                  img.img-circle(ng-switch-when="false", src='http://placehold.it/50/FA6F57/fff', alt='User Avatar')
+              li.clearfix(ng-repeat='chat in chat', class='{{chatDirectionClass(chat.Direction)}}')
+                span.chat-img(class='pull-{{chatDirectionClass(chat.Direction)}}')
+                  img.img-circle(src='{{chat.Icon}}', alt='User Avatar')
                 .chat-body.clearfix
-                  .header
+                  .header(ng-show="chat.Direction=='Outgoing'")
                     strong.primary-font {{chat.Name}}
                     small.pull-right.text-muted
                       i.fa.fa-clock-o.fa-fw
                       | {{chat.Time}}
+                  .header(ng-show="chat.Direction=='Incoming'")
+                    small.text-muted
+                      i.fa.fa-clock-o.fa-fw
+                      | {{chat.Time}}   
+                    strong.pull-right.primary-font {{chat.Name}}
                   p
                     | {{chat.Message}}
 
