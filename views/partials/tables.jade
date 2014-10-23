@@ -1,8 +1,5 @@
 .row
   .col-lg-12
-    .gridStyle(ng-grid="gridOptions")
-.row
-  .col-lg-12
     .panel.panel-default
       .panel-heading
         | ngTable
@@ -21,6 +18,7 @@
                   | {{engine.Version}}
                 td(data-title="'CSS grade'", sortable="'CSS'")
                   | {{engine.CSS}}
+
         .well
           h4 ngTable Usage Information
           p

@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', ['ngRoute', 'ngTable']).
+angular.module('myApp.controllers', []).
   controller('AppCtrl', function ($scope, $http) {
 
     $http({
@@ -15,7 +15,6 @@ angular.module('myApp.controllers', ['ngRoute', 'ngTable']).
     error(function (data, status, headers, config) {
       $scope.name = 'Error!';
     });
-    
   }).
   controller('dashboardCtrl', function ($scope, $location, TableService) {
     
@@ -69,6 +68,7 @@ angular.module('myApp.controllers', ['ngRoute', 'ngTable']).
   controller('tablesCtrl', function($scope, $filter, TableService, ngTableParams){
     
     TableService.getTableData().then(function(data) {
+      
       $scope.tableParams = new ngTableParams({
         page: 1,            // show first page
         count: 10,           // count per page
@@ -79,10 +79,10 @@ angular.module('myApp.controllers', ['ngRoute', 'ngTable']).
           name: ''
         }
       }, {
-        total: 1,
+        total: data.layoutEngines.length,
         getData: function($defer, params) {
           var filteredData = params.filter() ? $filter('filter')(data.layoutEngines, params.filter()) : data.layoutEngines;
-          var orderedData = params.sorting() ? $filter('orderBy')(filteredData, params.orderBy()) : data;
+          var orderedData = params.sorting() ? $filter('orderBy')(filteredData, params.orderBy()) : data.layoutEngines;
 
           params.total(orderedData.length); // set total for recalc pagination
           $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
@@ -90,6 +90,7 @@ angular.module('myApp.controllers', ['ngRoute', 'ngTable']).
       });
     $scope.nativeTableData = data.nativeTableData;    
     });
+    
     
     $scope.$on('$viewContentLoaded', function () 
      {
