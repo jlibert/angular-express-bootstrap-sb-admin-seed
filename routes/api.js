@@ -4,9 +4,17 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/name', function(req, res){
-  res.json({
-    name: 'DashBoard'
+// JSON Datasource - ideally we'd get this data from some database
+router.get('/datasource', function(req, res, next){
+  var fs = require('fs');
+  var file = __dirname + '/../external_data/data.json';
+  
+  fs.readFile(file, 'utf8', function (err, data) {
+    if (err) {
+      console.log('Error: ' + err);
+      return;
+    }
+  res.send(data);
   });
 });
 

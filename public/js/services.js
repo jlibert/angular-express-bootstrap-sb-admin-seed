@@ -7,7 +7,7 @@ angular.module('myApp.services', []).
     factory('TableService', function ($http, $q) {
 	    return {
         getTableData: function() {
-          return $http.get('/datasource').success(function(data){
+          return $http.get('/api/datasource').success(function(data){
           }).then(function(response) {
             if (typeof response.data === 'object') {
 	            return response.data;
