@@ -107,4 +107,16 @@
 {"Icon"  :  "", "Type"  :  "", "Heading"  :  "Lorem ipsum dolor", "Timestamp"  :  null, "Body"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!", 
 "Menu"  :  null},
 {"Icon"  :  "graduation-cap", "Type"  :  "success", "Heading"  :  "Lorem ipsum dolor", "Timestamp"  :  null, "Body"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.", 
-"Menu"  :  null}]}
+"Menu"  :  null}],
+
+"inbox":[
+   {"Name"  :  "John Smith", "Date"  :  "10/24/2014", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque."}, 
+  {"Name"  :  "John Smith", "Date"  :  "10/23/2014", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis."},
+  {"Name"  :  "John Smith", "Date"  :  "10/22/2014", "Message"  :  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis."}],
+
+ "processes":[
+   {"Name"  :  "Task 1", "Completed"  :  "40", "Type"  :  "success"}, 
+   {"Name"  :  "Task 2", "Completed"  :  "20", "Type"  :  "info"}, 
+   {"Name"  :  "Task 3", "Completed"  :  "60", "Type"  :  "warning"}, 
+   {"Name"  :  "Task 4", "Completed"  :  "80", "Type"  :  "danger"}]
+}

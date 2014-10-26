@@ -14,7 +14,7 @@ router.get('/datasource', function(req, res, next){
       console.log('Error: ' + err);
       return;
     }
-  res.send(data);
+  res.json(JSON.parse(data));
   });
 });
 
