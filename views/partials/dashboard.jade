@@ -61,6 +61,9 @@
               .clearfix 
     .row
       .col-lg-8
+      
+      
+        // Area Chart
         .panel.panel-default
           .panel-heading
             i.fa.fa-bar-chart-o.fa-fw
@@ -82,6 +85,9 @@
                     a(href='dashboard#') Separated link
           .panel-body
             #morris-area-chart 
+            
+            
+        // Bar Chart 
         .panel.panel-default
           .panel-heading
             i.fa.fa-bar-chart-o.fa-fw
@@ -113,187 +119,65 @@
                         th Time
                         th Amount
                     tbody
-                      tr
-                        td 3326
-                        td 10/21/2013
-                        td 3:29 PM
-                        td $321.33
-                      tr
-                        td 3325
-                        td 10/21/2013
-                        td 3:20 PM
-                        td $234.34
-                      tr
-                        td 3324
-                        td 10/21/2013
-                        td 3:03 PM
-                        td $724.17
-                      tr
-                        td 3323
-                        td 10/21/2013
-                        td 3:00 PM
-                        td $23.71
-                      tr
-                        td 3322
-                        td 10/21/2013
-                        td 2:49 PM
-                        td $8345.23
-                      tr
-                        td 3321
-                        td 10/21/2013
-                        td 2:23 PM
-                        td $245.12
-                      tr
-                        td 3320
-                        td 10/21/2013
-                        td 2:15 PM
-                        td $5663.54
-                      tr
-                        td 3319
-                        td 10/21/2013
-                        td 2:13 PM
-                        td $943.45 
+                      tr(ng-repeat='tableRow in dashboardTable')
+                        td {{tableRow.ID}}
+                        td {{tableRow.Date}}
+                        td {{tableRow.Time}}
+                        td {{tableRow.Amount}}
               .col-lg-8
                 #morris-bar-chart 
+                
+                
+        // Responsive Timeline
         .panel.panel-default
           .panel-heading
             i.fa.fa-clock-o.fa-fw
             | Responsive Timeline
           .panel-body
             ul.timeline
-              li
-                .timeline-badge
-                  i.fa.fa-check
+              li(ng-repeat='lineItem in timeline', ng-class-even="'timeline-inverted'", ng-switch='lineItem.Icon.length > 0')
+                
+                .timeline-badge(class='{{lineItem.Type}}', ng-switch-when='true')
+                  i.fa(class='fa-{{lineItem.Icon}}')
+                
                 .timeline-panel
                   .timeline-heading
-                    h4.timeline-title Lorem ipsum dolor
-                    p
+                    h4.timeline-title {{lineItem.Heading}}
+                    p(ng-show='lineItem.Timestamp!=null')
                       small.text-muted
                         i.fa.fa-clock-o
-                        | 11 hours ago via Twitter
+                        |  {{lineItem.Timestamp}}
                   .timeline-body
                     p
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia pariatur? Est cum veniam excepturi. Maiores praesentium, porro voluptas suscipit facere rem dicta, debitis.
-              li.timeline-inverted
-                .timeline-badge.warning
-                  i.fa.fa-credit-card
-                .timeline-panel
-                  .timeline-heading
-                    h4.timeline-title Lorem ipsum dolor
-                  .timeline-body
-                    p
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolorem quibusdam, tenetur commodi provident cumque magni voluptatem libero, quis rerum. Fugiat esse debitis optio, tempore. Animi officiis alias, officia repellendus.
-                    p
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium maiores odit qui est tempora eos, nostrum provident explicabo dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.
-              li
-                .timeline-badge.danger
-                  i.fa.fa-bomb
-                .timeline-panel
-                  .timeline-heading
-                    h4.timeline-title Lorem ipsum dolor
-                  .timeline-body
-                    p
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam facilis enim eaque, tenetur nam id qui vel velit similique nihil iure molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.
-              li.timeline-inverted
-                .timeline-panel
-                  .timeline-heading
-                    h4.timeline-title Lorem ipsum dolor
-                  .timeline-body
-                    p
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!
-              li
-                .timeline-badge.info
-                  i.fa.fa-save
-                .timeline-panel
-                  .timeline-heading
-                    h4.timeline-title Lorem ipsum dolor
-                  .timeline-body
-                    p
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus modi quam ipsum alias at est molestiae excepturi delectus nesciunt, quibusdam debitis amet, beatae consequuntur impedit nulla qui! Laborum, atque.
-                    hr
-                    .btn-group
+                      | {{lineItem.Body}}
+                    hr(ng-show='lineItem.Menu!=null')
+                    .btn-group(ng-show='lineItem.Menu!=null')
                       button.btn.btn-primary.btn-sm.dropdown-toggle(type='button', data-toggle='dropdown')
                         i.fa.fa-gear
                         span.caret
                       ul.dropdown-menu(role='menu')
-                        li
-                          a(href='dashboard#') Action
-                        li
-                          a(href='dashboard#') Another action
-                        li
-                          a(href='dashboard#') Something else here
-                        li.divider
-                        li
-                          a(href='dashboard#') Separated link
-              li
-                .timeline-panel
-                  .timeline-heading
-                    h4.timeline-title Lorem ipsum dolor
-                  .timeline-body
-                    p
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi fuga odio quibusdam. Iure expedita, incidunt unde quis nam! Quod, quisquam. Officia quam qui adipisci quas consequuntur nostrum sequi. Consequuntur, commodi.
-              li.timeline-inverted
-                .timeline-badge.success
-                  i.fa.fa-graduation-cap
-                .timeline-panel
-                  .timeline-heading
-                    h4.timeline-title Lorem ipsum dolor
-                  .timeline-body
-                    p
-                      | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.
+                        li(ng-repeat='menuItem in lineItem.Menu')
+                          a(href='{{menuItem.URL}}') {{menuItem.Item}}
+
       .col-lg-4
+      
+      
+        // Notifications
         .panel.panel-default
           .panel-heading
             i.fa.fa-bell.fa-fw
             |  Notifications Panel
           .panel-body
             .list-group
-              a.list-group-item(href='dashboard#')
-                i.fa.fa-comment.fa-fw
-                |  New Comment
+              a.list-group-item(href='dashboard#', ng-repeat='listItem in notifications')
+                i.fa.fa-fw(class="fa-{{listItem.Icon}}")
+                |  {{listItem.Subject}}
                 span.pull-right.text-muted.small
-                  em 4 minutes ago
-              a.list-group-item(href='dashboard#')
-                i.fa.fa-twitter.fa-fw
-                |  3 New Followers
-                span.pull-right.text-muted.small
-                  em 12 minutes ago
-              a.list-group-item(href='dashboard#')
-                i.fa.fa-envelope.fa-fw
-                |  Message Sent
-                span.pull-right.text-muted.small
-                  em 27 minutes ago
-              a.list-group-item(href='dashboard#')
-                i.fa.fa-tasks.fa-fw
-                |  New Task
-                span.pull-right.text-muted.small
-                  em 43 minutes ago
-              a.list-group-item(href='dashboard#')
-                i.fa.fa-upload.fa-fw
-                |  Server Rebooted
-                span.pull-right.text-muted.small
-                  em 11:32 AM
-              a.list-group-item(href='dashboard#')
-                i.fa.fa-bolt.fa-fw
-                |  Server Crashed!
-                span.pull-right.text-muted.small
-                  em 11:13 AM
-              a.list-group-item(href='dashboard#')
-                i.fa.fa-warning.fa-fw
-                |  Server Not Responding
-                span.pull-right.text-muted.small
-                  em 10:57 AM
-              a.list-group-item(href='dashboard#')
-                i.fa.fa-shopping-cart.fa-fw
-                |  New Order Placed
-                span.pull-right.text-muted.small
-                  em 9:49 AM
-              a.list-group-item(href='dashboard#')
-                i.fa.fa-money.fa-fw
-                |  Payment Received
-                span.pull-right.text-muted.small
-                  em Yesterday 
+                  em {{listItem.DateTime}}
             a.btn.btn-default.btn-block(href='dashboard#') View All Alerts 
+        
+        
+        // Donut Chart
         .panel.panel-default
           .panel-heading
             i.fa.fa-bar-chart-o.fa-fw
@@ -301,6 +185,9 @@
           .panel-body
             #morris-donut-chart
             a.btn.btn-default.btn-block(href='dashboard#') View Details
+            
+            
+        // Chat Panel    
         .chat-panel.panel.panel-default
           .panel-heading
             i.fa.fa-comments.fa-fw
@@ -332,50 +219,23 @@
                     | Sign Out
           .panel-body
             ul.chat
-              li.left.clearfix
-                span.chat-img.pull-left
-                  img.img-circle(src='http://placehold.it/50/55C1E7/fff', alt='User Avatar')
+              li.clearfix(ng-repeat='chat in chat', class='{{chatDirectionClass(chat.Direction)}}')
+                span.chat-img(class='pull-{{chatDirectionClass(chat.Direction)}}')
+                  img.img-circle(src='{{chat.Icon}}', alt='User Avatar')
                 .chat-body.clearfix
-                  .header
-                    strong.primary-font Jack Sparrow
+                  .header(ng-show="chat.Direction=='Outgoing'")
+                    strong.primary-font {{chat.Name}}
                     small.pull-right.text-muted
                       i.fa.fa-clock-o.fa-fw
-                      | 12 mins ago
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-              li.right.clearfix
-                span.chat-img.pull-right
-                  img.img-circle(src='http://placehold.it/50/FA6F57/fff', alt='User Avatar')
-                .chat-body.clearfix
-                  .header
+                      | {{chat.Time}}
+                  .header(ng-show="chat.Direction=='Incoming'")
                     small.text-muted
                       i.fa.fa-clock-o.fa-fw
-                      | 13 mins ago
-                    strong.pull-right.primary-font Bhaumik Patel
+                      | {{chat.Time}}   
+                    strong.pull-right.primary-font {{chat.Name}}
                   p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-              li.left.clearfix
-                span.chat-img.pull-left
-                  img.img-circle(src='http://placehold.it/50/55C1E7/fff', alt='User Avatar')
-                .chat-body.clearfix
-                  .header
-                    strong.primary-font Jack Sparrow
-                    small.pull-right.text-muted
-                      i.fa.fa-clock-o.fa-fw
-                      | 14 mins ago
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-              li.right.clearfix
-                span.chat-img.pull-right
-                  img.img-circle(src='http://placehold.it/50/FA6F57/fff', alt='User Avatar')
-                .chat-body.clearfix
-                  .header
-                    small.text-muted
-                      i.fa.fa-clock-o.fa-fw
-                      | 15 mins ago
-                    strong.pull-right.primary-font Bhaumik Patel
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                    | {{chat.Message}}
+
           .panel-footer
             .input-group
               input#btn-input.form-control.input-sm(type='text', placeholder='Type your message here...')

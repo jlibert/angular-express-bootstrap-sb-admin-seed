@@ -9,6 +9,7 @@ var express = require('express'),
   errorHandler = require('errorhandler'),
   morgan = require('morgan'),
   routes = require('./routes'),
+  partials = require('./routes/partials'),
   api = require('./routes/api'),
   http = require('http'),
   path = require('path');
@@ -25,7 +26,8 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(morgan('dev'));
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -41,21 +43,25 @@ if (env === 'production') {
   // TODO
 }
 
-
 /**
  * Routes
  */
 
 // serve index and view partials
-app.get('/', routes.index);
-app.get('/partials/:name', routes.partials);
+app.use('/', routes);
+app.use('/partials', partials);
 
 // JSON API
-app.get('/api/name', api.name);
+app.use('/api', api);
 
 // redirect all others to the index (HTML5 history)
-app.get('*', routes.index);
+app.get('*', function(req, res, next){
+  res.render('index');
+});
 
+app.use('*', function(req, res, next){
+  res.render('index');
+});
 
 /**
  * Start Server

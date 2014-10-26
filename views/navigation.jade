@@ -8,150 +8,102 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bot
         a.navbar-brand(href='dashboard') Angular Express Bootstrap SB Admin Seed
       ul.nav.navbar-top-links.navbar-right
         li.dropdown
-          a.dropdown-toggle(data-toggle='dropdown', style='cursor:pointer;')
+          a.dropdown-toggle(data-toggle='dropdown', ng-href='{{location}}')
             i.fa.fa-envelope.fa-fw
             i.fa.fa-caret-down
           ul.dropdown-menu.dropdown-messages
-            li
-              a(style='cursor:pointer;')
+            li(ng-repeat='message in inbox')
+              a(ng-href='{{location}}')
                 div
-                  strong John Smith
+                  strong {{message.Name}}
                   span.pull-right.text-muted
-                    em Yesterday
+                    em {{Datefn(message.Date)}}
                 div
-                  | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-            li.divider
-            li
-              a(style='cursor:pointer;')
-                div
-                  strong John Smith
-                  span.pull-right.text-muted
-                    em Yesterday
-                div
-                  | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-            li.divider
-            li
-              a(style='cursor:pointer;')
-                div
-                  strong John Smith
-                  span.pull-right.text-muted
-                    em Yesterday
-                div
-                  | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-            li.divider
-            li
-              a.text-center(style='cursor:pointer;')
-                strong Read All Messages
+                  | {{TruncMessage(message.Message)}}
+               hr
+            li(ng-show='inbox.length > 2')
+              a.text-center(ng-href='{{location}}')
+                strong Read All Messages 
                 i.fa.fa-angle-right
         li.dropdown
-          a.dropdown-toggle(data-toggle='dropdown', style='cursor:pointer;')
+          a.dropdown-toggle(data-toggle='dropdown', ng-href='{{location}}')
             i.fa.fa-tasks.fa-fw
             i.fa.fa-caret-down
           ul.dropdown-menu.dropdown-tasks
-            li
-              a(style='cursor:pointer;')
+            li(ng-repeat='process in processes')
+              a(ng-href='{{location}}')
                 div
                   p
-                    strong Task 1
-                    span.pull-right.text-muted 40% Complete
+                    strong {{process.Name}}
+                    span.pull-right.text-muted {{process.Completed}}% Complete
                   .progress.progress-striped.active
-                    .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 40%;')
-                      span.sr-only 40% Complete (success)
-            li.divider
-            li
-              a(style='cursor:pointer;')
-                div
-                  p
-                    strong Task 2
-                    span.pull-right.text-muted 20% Complete
-                  .progress.progress-striped.active
-                    .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='20', aria-valuemin='0', aria-valuemax='100', style='width: 20%;')
-                      span.sr-only 20% Complete
-            li.divider
-            li
-              a(style='cursor:pointer;')
-                div
-                  p
-                    strong Task 3
-                    span.pull-right.text-muted 60% Complete
-                  .progress.progress-striped.active
-                    .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100', style='width: 60%;')
-                      span.sr-only 60% Complete (warning)
-            li.divider
-            li
-              a(style='cursor:pointer;')
-                div
-                  p
-                    strong Task 4
-                    span.pull-right.text-muted 80% Complete
-                  .progress.progress-striped.active
-                    .progress-bar.progress-bar-danger(role='progressbar', aria-valuenow='80', aria-valuemin='0', aria-valuemax='100', style='width: 80%;')
-                      span.sr-only 80% Complete (danger)
-            li.divider
-            li
-              a.text-center(style='cursor:pointer;')
-                strong See All Tasks
+                    .progress-bar(class='progress-bar-{{process.Type}}', role='progressbar', aria-valuenow='{{process.Completed}}', aria-valuemin='0', aria-valuemax='100', style='width: {{process.Completed}}%;')
+                      span.sr-only {{process.Completed}}% Complete (success)
+              hr
+            li(ng-show='processes.length > 2')
+              a.text-center(ng-href='{{location}}')
+                strong See All Tasks 
                 i.fa.fa-angle-right
         li.dropdown
-          a.dropdown-toggle(data-toggle='dropdown', style='cursor:pointer;')
+          a.dropdown-toggle(data-toggle='dropdown', ng-href='{{location}}')
             i.fa.fa-bell.fa-fw
             i.fa.fa-caret-down
           ul.dropdown-menu.dropdown-alerts
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 div
                   i.fa.fa-comment.fa-fw
                   | New Comment
                   span.pull-right.text-muted.small 4 minutes ago
             li.divider
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 div
                   i.fa.fa-twitter.fa-fw
                   | 3 New Followers
                   span.pull-right.text-muted.small 12 minutes ago
             li.divider
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 div
                   i.fa.fa-envelope.fa-fw
                   | Message Sent
                   span.pull-right.text-muted.small 4 minutes ago
             li.divider
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 div
                   i.fa.fa-tasks.fa-fw
                   | New Task
                   span.pull-right.text-muted.small 4 minutes ago
             li.divider
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 div
                   i.fa.fa-upload.fa-fw
                   | Server Rebooted
                   span.pull-right.text-muted.small 4 minutes ago
             li.divider
             li
-              a.text-center(style='cursor:pointer;')
-                strong See All Alerts
+              a.text-center(ng-href='{{location}}')
+                strong See All Alerts 
                 i.fa.fa-angle-right
         li.dropdown
-          a.dropdown-toggle(data-toggle='dropdown')
+          a.dropdown-toggle(data-toggle='dropdown', ng-href='{{location}}')
             i.fa.fa-user.fa-fw
             i.fa.fa-caret-down
           ul.dropdown-menu.dropdown-user
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 i.fa.fa-user.fa-fw
                 | User Profile
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 i.fa.fa-gear.fa-fw
                 | Settings
             li.divider
             li
-              a(href='dashboard')
+              a(ng-href='{{location}}')
                 i.fa.fa-sign-out.fa-fw
                 | Logout
       .navbar-default.sidebar(role='navigation')
@@ -168,7 +120,7 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bot
                 i.fa.fa-dashboard.fa-fw
                 |  Dashboard
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 i.fa.fa-bar-chart-o.fa-fw
                 |  Charts
                 span.fa.arrow
@@ -178,7 +130,7 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bot
                 li
                   a(href='morris') Morris.js Charts
             li
-              a.active(href='tables')
+              a(href='tables')
                 i.fa.fa-table.fa-fw
                 |  Tables
             li
@@ -186,7 +138,7 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bot
                 i.fa.fa-edit.fa-fw
                 |  Forms
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 i.fa.fa-wrench.fa-fw
                 |  UI Elements
                 span.fa.arrow
@@ -202,30 +154,30 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bot
                 li
                   a(href='grid') Grid
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 i.fa.fa-sitemap.fa-fw
                 |  Multi-Level Dropdown
                 span.fa.arrow
               ul.nav.nav-second-level
                 li
-                  a(style='cursor:pointer;') Second Level Item
+                  a(ng-href='{{location}}') Second Level Item
                 li
-                  a(style='cursor:pointer;') Second Level Item
+                  a(ng-href='{{location}}') Second Level Item
                 li
-                  a
+                  a(ng-href='{{location}}')
                     | Third Level
                     span.fa.arrow
                   ul.nav.nav-third-level
                     li
-                      a(style='cursor:pointer;') Third Level Item
+                      a(ng-href='{{location}}') Third Level Item
                     li
-                      a(style='cursor:pointer;') Third Level Item
+                      a(ng-href='{{location}}') Third Level Item
                     li
-                      a(style='cursor:pointer;') Third Level Item
+                      a(ng-href='{{location}}') Third Level Item
                     li
-                      a(style='cursor:pointer;') Third Level Item
+                      a(ng-href='{{location}}') Third Level Item
             li
-              a(style='cursor:pointer;')
+              a(ng-href='{{location}}')
                 i.fa.fa-files-o.fa-fw
                 |  Sample Pages
                 span.fa.arrow
@@ -233,5 +185,4 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bot
                 li
                   a(href='blank') Blank Page
                 li
-                  a(href='dashboard') Login Page
-
+                  a(href='login', target='_self') Login Page

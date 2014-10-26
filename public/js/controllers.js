@@ -3,25 +3,34 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('AppCtrl', function ($scope, $http) {
-
-    $http({
-      method: 'GET',
-      url: '/api/name'
-    }).
-    success(function (data, status, headers, config) {
-      $scope.name = data.name;
-    }).
-    error(function (data, status, headers, config) {
-      $scope.name = 'Error!';
+  controller('AppCtrl', function ($scope, $http, $location, AppService) {
+    
+    $scope.Datefn  = function(messageDate){return AppService.Datefn(messageDate);}
+    $scope.TruncMessage  = function(message){return AppService.Truncatetxt(message);}
+    
+    AppService.getData().then(function(data) {
+      $scope.inbox = data.inbox;
+      $scope.processes = data.processes;
+    });
+  }).
+  controller('dashboardCtrl', function ($scope, $location, AppService) {
+    
+    AppService.getData().then(function(data) {
+      $scope.dashboardTable = data.dashboardTable;
+      $scope.notifications = data.notifications;
+      $scope.chat = data.chat;
+      $scope.timeline = data.timeline;
     });
     
-  }).
-  controller('dashboardCtrl', function ($scope) {
+    $scope.chatDirectionClass = function(direction){
+      return (direction == 'Outgoing')?'left':'right';
+    }
+    
     // write Ctrl
     $scope.$on('$viewContentLoaded', function () 
      {
        $scope.$parent.name = 'Dashboard';
+       $scope.$parent.location = $location.path();
        // javascript code here
        $('div#page-wrapper div:last').nextAll('script').remove();
        $('div#page-wrapper').append('<script src="sb-admin-2/js/plugins/morris/raphael.min.js"></script>'+
@@ -29,11 +38,12 @@ angular.module('myApp.controllers', []).
                                     '<script src="sb-admin-2/js/plugins/morris/morris-data.js"></script>');
      });
   }).
-  controller('flotCtrl', function ($scope) {
+  controller('flotCtrl', function ($scope, $location) {
     // write Ctrl here
     $scope.$on('$viewContentLoaded', function () 
      {
        $scope.$parent.name = 'Flot';
+       $scope.$parent.location = $location.path();
        // javascript code here
        $('div#page-wrapper div:last').nextAll('script').remove();
        $('div#page-wrapper').append('<script src="sb-admin-2/js/plugins/flot/excanvas.min.js"></script>'+
@@ -44,10 +54,11 @@ angular.module('myApp.controllers', []).
                                     '<script src="sb-admin-2/js/plugins/flot/flot-data.js"></script>');
      });
   }).
-  controller('morrisCtrl', function($scope){
+  controller('morrisCtrl', function($scope, $location){
     $scope.$on('$viewContentLoaded', function () 
      {
       $scope.$parent.name = 'Morris.js Charts';
+      $scope.$parent.location = $location.path();
       // javascript code here
       $('div#page-wrapper div:last').nextAll('script').remove();
       $('div#page-wrapper').append('<script src="sb-admin-2/js/plugins/morris/raphael.min.js"></script>'+
@@ -55,56 +66,93 @@ angular.module('myApp.controllers', []).
                                       '<script src="sb-admin-2/js/plugins/morris/morris-data.js"></script>');
      });
   }).
-  controller('tablesCtrl', function($scope){
+
+
+
+  controller('tablesCtrl', function($scope, $filter, $location, AppService, ngTableParams){
+    
+    AppService.getData().then(function(data) {
+      
+      $scope.tableParams = new ngTableParams({
+        page: 1,            // show first page
+        count: 10,           // count per page
+        sorting: {
+          name: 'asc' // initial sorting
+        },
+        filter: {
+          name: ''
+        }
+      }, {
+        total: data.layoutEngines.length,
+        getData: function($defer, params) {
+          var filteredData = params.filter() ? $filter('filter')(data.layoutEngines, params.filter()) : data.layoutEngines;
+          var orderedData = params.sorting() ? $filter('orderBy')(filteredData, params.orderBy()) : data.layoutEngines;
+
+          params.total(orderedData.length); // set total for recalc pagination
+          $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+      });
+    $scope.nativeTableData = data.nativeTableData;    
+    });
+    
+    
     $scope.$on('$viewContentLoaded', function () 
      {
       $scope.$parent.name = 'Tables';
-      // javascript code here
-      $('div#page-wrapper div:last').nextAll('script').remove();
-      $('div#page-wrapper').append('<script src="sb-admin-2/js/plugins/dataTables/jquery.dataTables.js"></script>'+
-                                      '<script src="sb-admin-2/js/plugins/dataTables/dataTables.bootstrap.js"></script>'+
-                                  '<script>$(document).ready(function() {$("#dataTables-example").dataTable();});</script>');
+      $scope.$parent.location = $location.path();
+       $('div#page-wrapper div:last').nextAll('script').remove();
      });
-  }).controller('formsCtrl', function($scope){
+  }).
+
+
+
+controller('formsCtrl', function($scope, $location){
     $scope.$on('$viewContentLoaded', function()
      {
       $scope.$parent.name = 'Forms';
+      $scope.$parent.location = $location.path();
       $('div#page-wrapper div:last').nextAll('script').remove();
      });
-  }).controller('gridCtrl', function($scope){
+  }).controller('gridCtrl', function($scope, $location){
     $scope.$on('$viewContentLoaded', function()
      {
       $scope.$parent.name = 'Grid';
+      $scope.$parent.location = $location.path();
       $('div#page-wrapper div:last').nextAll('script').remove();
      });
-  }).controller('typographyCtrl', function($scope){
+  }).controller('typographyCtrl', function($scope, $location){
     $scope.$on('$viewContentLoaded', function()
      {
       $scope.$parent.name = 'Typography';
+      $scope.$parent.location = $location.path();
       $('div#page-wrapper div:last').nextAll('script').remove();
      });
-  }).controller('buttonsCtrl', function($scope){
+  }).controller('buttonsCtrl', function($scope, $location){
     $scope.$on('$viewContentLoaded', function()
      {
       $scope.$parent.name = 'Buttons';
+      $scope.$parent.location = $location.path();
       $('div#page-wrapper div:last').nextAll('script').remove();
      });
-  }).controller('notificationsCtrl', function($scope){
+  }).controller('notificationsCtrl', function($scope, $location){
     $scope.$on('$viewContentLoaded', function()
      {
       $scope.$parent.name = 'Notifications';
+      $scope.$parent.location = $location.path();
       $('div#page-wrapper div:last').nextAll('script').remove();
      });
-  }).controller('panels-wellsCtrl', function($scope){
+  }).controller('panels-wellsCtrl', function($scope, $location){
     $scope.$on('$viewContentLoaded', function()
      {
       $scope.$parent.name = 'Panels and Wells';
+      $scope.$parent.location = $location.path();
       $('div#page-wrapper div:last').nextAll('script').remove();
      });
-  }).controller('blankCtrl', function($scope){
+  }).controller('blankCtrl', function($scope, $location){
     $scope.$on('$viewContentLoaded', function()
      {
       $scope.$parent.name = 'Blank';
+      $scope.$parent.location = $location.path();
       $('div#page-wrapper div:last').nextAll('script').remove();
      });
   });

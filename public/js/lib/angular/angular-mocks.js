@@ -1,5 +1,6 @@
+
 /**
- * @license AngularJS v1.0.7
+ * @license AngularJS v1.1.1
  * (c) 2010-2012 Google, Inc. http://angularjs.org
  * License: MIT
  *
@@ -202,30 +203,6 @@ angular.mock.$Browser.prototype = {
  * Mock implementation of {@link ng.$exceptionHandler} that rethrows or logs errors passed
  * into it. See {@link ngMock.$exceptionHandlerProvider $exceptionHandlerProvider} for configuration
  * information.
- *
- *
- * <pre>
- *   describe('$exceptionHandlerProvider', function() {
- *
- *     it('should capture log messages and exceptions', function() {
- *
- *       module(function($exceptionHandlerProvider) {
- *         $exceptionHandlerProvider.mode('log');
- *       });
- *
- *       inject(function($log, $exceptionHandler, $timeout) {
- *         $timeout(function() { $log.log(1); });
- *         $timeout(function() { $log.log(2); throw 'banana peel'; });
- *         $timeout(function() { $log.log(3); });
- *         expect($exceptionHandler.errors).toEqual([]);
- *         expect($log.assertEmpty());
- *         $timeout.flush();
- *         expect($exceptionHandler.errors).toEqual(['banana peel']);
- *         expect($log.log.logs).toEqual([[1], [2], [3]]);
- *       });
- *     });
- *   });
- * </pre>
  */
 
 angular.mock.$ExceptionHandlerProvider = function() {
@@ -241,11 +218,11 @@ angular.mock.$ExceptionHandlerProvider = function() {
    *
    * @param {string} mode Mode of operation, defaults to `rethrow`.
    *
-   *   - `rethrow`: If any errors are passed into the handler in tests, it typically
+   *   - `rethrow`: If any errors are are passed into the handler in tests, it typically
    *                means that there is a bug in the application or test, so this mock will
    *                make these tests fail.
-   *   - `log`: Sometimes it is desirable to test that an error is thrown, for this case the `log` mode stores an
-   *            array of errors in `$exceptionHandler.errors`, to allow later assertion of them.
+   *   - `log`: Sometimes it is desirable to test that an error is throw, for this case the `log` mode stores the
+   *            error and allows later assertion of it.
    *            See {@link ngMock.$log#assertEmpty assertEmpty()} and
    *             {@link ngMock.$log#reset reset()}
    */
@@ -322,13 +299,7 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
-       * Array of messages logged using {@link ngMock.$log#log}.
-       *
-       * @example
-       * <pre>
-       * $log.log('Some Log');
-       * var first = $log.log.logs.unshift();
-       * </pre>
+       * Array of logged messages.
        */
       $log.log.logs = [];
       /**
@@ -337,13 +308,7 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
-       * Array of messages logged using {@link ngMock.$log#warn}.
-       *
-       * @example
-       * <pre>
-       * $log.warn('Some Warning');
-       * var first = $log.warn.logs.unshift();
-       * </pre>
+       * Array of logged messages.
        */
       $log.warn.logs = [];
       /**
@@ -352,13 +317,7 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
-       * Array of messages logged using {@link ngMock.$log#info}.
-       *
-       * @example
-       * <pre>
-       * $log.info('Some Info');
-       * var first = $log.info.logs.unshift();
-       * </pre>
+       * Array of logged messages.
        */
       $log.info.logs = [];
       /**
@@ -367,13 +326,7 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
-       * Array of messages logged using {@link ngMock.$log#error}.
-       *
-       * @example
-       * <pre>
-       * $log.log('Some Error');
-       * var first = $log.error.logs.unshift();
-       * </pre>
+       * Array of logged messages.
        */
       $log.error.logs = [];
     };
@@ -454,7 +407,7 @@ angular.mock.$LogProvider = function() {
    *
    * *NOTE*: this is not an injectable instance, just a globally available mock class of `Date`.
    *
-   * Mock of the Date type which has its timezone specified via constructor arg.
+   * Mock of the Date type which has its timezone specified via constroctor arg.
    *
    * The main purpose is to create Date-like instances with timezone fixed to the specified timezone
    * offset, so that we can test code that depends on local timezone settings without dependency on
@@ -609,7 +562,7 @@ angular.mock.$LogProvider = function() {
 
 /**
  * @ngdoc function
- * @name angular.mock.dump
+ * @name angular.mock.debug
  * @description
  *
  * *NOTE*: this is not an injectable instance, just a globally available function.
@@ -677,10 +630,10 @@ angular.mock.dump = function(object) {
  * @ngdoc object
  * @name ngMock.$httpBackend
  * @description
- * Fake HTTP backend implementation suitable for unit testing applications that use the
+ * Fake HTTP backend implementation suitable for unit testing application that use the
  * {@link ng.$http $http service}.
  *
- * *Note*: For fake HTTP backend implementation suitable for end-to-end testing or backend-less
+ * *Note*: For fake http backend implementation suitable for end-to-end testing or backend-less
  * development please see {@link ngMockE2E.$httpBackend e2e $httpBackend mock}.
  *
  * During unit testing, we want our unit tests to run quickly and have no external dependencies so
@@ -792,7 +745,7 @@ angular.mock.dump = function(object) {
    }
 
    // testing controller
-   var $httpBackend;
+   var $http;
 
    beforeEach(inject(function($injector) {
      $httpBackend = $injector.get('$httpBackend');
@@ -1634,14 +1587,20 @@ window.jstestdriver && (function(window) {
 })(window);
 
 
-window.jasmine && (function(window) {
+(window.jasmine || window.mocha) && (function(window) {
+
+  var currentSpec = null;
+
+  beforeEach(function() {
+    currentSpec = this;
+  });
 
   afterEach(function() {
-    var spec = getCurrentSpec();
-    var injector = spec.$injector;
+    var injector = currentSpec.$injector;
 
-    spec.$injector = null;
-    spec.$modules = null;
+    currentSpec.$injector = null;
+    currentSpec.$modules = null;
+    currentSpec = null;
 
     if (injector) {
       injector.get('$rootElement').unbind();
@@ -1663,13 +1622,8 @@ window.jasmine && (function(window) {
     angular.callbacks.counter = 0;
   });
 
-  function getCurrentSpec() {
-    return jasmine.getEnv().currentSpec;
-  }
-
   function isSpecRunning() {
-    var spec = getCurrentSpec();
-    return spec && spec.queue.running;
+    return currentSpec && currentSpec.queue.running;
   }
 
   /**
@@ -1677,7 +1631,7 @@ window.jasmine && (function(window) {
    * @name angular.mock.module
    * @description
    *
-   * *NOTE*: This function is also published on window for easy access.<br>
+   * *NOTE*: This is function is also published on window for easy access.<br>
    * *NOTE*: Only available with {@link http://pivotal.github.com/jasmine/ jasmine}.
    *
    * This function registers a module configuration code. It collects the configuration information
@@ -1694,11 +1648,10 @@ window.jasmine && (function(window) {
     return isSpecRunning() ? workFn() : workFn;
     /////////////////////
     function workFn() {
-      var spec = getCurrentSpec();
-      if (spec.$injector) {
+      if (currentSpec.$injector) {
         throw Error('Injector already created, can not register a module!');
       } else {
-        var modules = spec.$modules || (spec.$modules = []);
+        var modules = currentSpec.$modules || (currentSpec.$modules = []);
         angular.forEach(moduleFns, function(module) {
           modules.push(module);
         });
@@ -1711,7 +1664,7 @@ window.jasmine && (function(window) {
    * @name angular.mock.inject
    * @description
    *
-   * *NOTE*: This function is also published on window for easy access.<br>
+   * *NOTE*: This is function is also published on window for easy access.<br>
    * *NOTE*: Only available with {@link http://pivotal.github.com/jasmine/ jasmine}.
    *
    * The inject function wraps a function into an injectable function. The inject() creates new
@@ -1765,19 +1718,19 @@ window.jasmine && (function(window) {
     return isSpecRunning() ? workFn() : workFn;
     /////////////////////
     function workFn() {
-      var spec = getCurrentSpec();
-      var modules = spec.$modules || [];
+      var modules = currentSpec.$modules || [];
+
       modules.unshift('ngMock');
       modules.unshift('ng');
-      var injector = spec.$injector;
+      var injector = currentSpec.$injector;
       if (!injector) {
-        injector = spec.$injector = angular.injector(modules);
+        injector = currentSpec.$injector = angular.injector(modules);
       }
       for(var i = 0, ii = blockFns.length; i < ii; i++) {
         try {
           injector.invoke(blockFns[i] || angular.noop, this);
         } catch (e) {
-          if(e.stack && errorForStack) e.stack +=  '\n' + errorForStack.stack;
+          if(e.stack) e.stack +=  '\n' + errorForStack.stack;
           throw e;
         } finally {
           errorForStack = null;
